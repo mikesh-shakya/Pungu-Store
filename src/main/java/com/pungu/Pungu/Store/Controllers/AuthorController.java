@@ -1,6 +1,7 @@
 package com.pungu.Pungu.Store.Controllers;
 
 import com.pungu.Pungu.Store.Entities.Author;
+import com.pungu.Pungu.Store.Payload.AuthorDTO;
 import com.pungu.Pungu.Store.Services.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,8 +17,8 @@ public class AuthorController {
     private AuthorService authorService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Author>> getAllBooks(){
-        List<Author> allAuthor = authorService.getAllAuthor();
+    public ResponseEntity<List<AuthorDTO>> getAllBooks(){
+        List<AuthorDTO> allAuthor = authorService.getAllAuthor();
         return ResponseEntity.ok(allAuthor);
     }
 
@@ -27,8 +28,13 @@ public class AuthorController {
         return ResponseEntity.status(HttpStatus.CREATED).body(author_added);
     }
 
+    @GetMapping("/{authorId}")
+    public ResponseEntity<AuthorDTO> getAuthorById(@PathVariable Integer authorId){
+        return ResponseEntity.ok(authorService.getAuthorById(authorId));
+    }
+
     @PutMapping("/update/{authorId}")
-    public ResponseEntity<Author> updateAuthor(@PathVariable Integer authorId, @RequestBody Author author){
+    public ResponseEntity<AuthorDTO> updateAuthor(@PathVariable Integer authorId, @RequestBody Author author){
         return ResponseEntity.ok(authorService.updateAuthor(authorId, author));
     }
 
