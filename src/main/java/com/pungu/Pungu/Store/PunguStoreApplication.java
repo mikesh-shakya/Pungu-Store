@@ -20,9 +20,4 @@ public class PunguStoreApplication {
 		SpringApplication.run(PunguStoreApplication.class, args);
 		System.out.println("Hello, This is Pungu.");
 	}
-
-//	@Bean
-//	public ModelMapper modelMapper(){
-//		return  new ModelMapper();
-//	}
 }
