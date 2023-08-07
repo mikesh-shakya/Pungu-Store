@@ -14,5 +14,12 @@ public class CustomResponseHandler {
         ApiResponse response = ApiResponse.builder().message(error_message).success(false).status(HttpStatus.NOT_FOUND).build();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
+    @ExceptionHandler
+    public ResponseEntity<ApiResponse> handleBadCredentialsException(BadCredentialsException exception){
+        String error_message = exception.getMessage();
+        ApiResponse response = ApiResponse.builder().message(error_message).success(false).status(HttpStatus.UNAUTHORIZED).build();
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+    }
+
 }
 
